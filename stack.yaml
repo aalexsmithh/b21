@@ -1,0 +1,7 @@
+resolver: lts-9.10
+packages:
+    - frontend
+    - backend
+extra-deps: []
+flags: {}
+extra-package-dbs: []
