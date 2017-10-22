@@ -1,1 +1,7 @@
-(stack build && stack exec b21-frontend rebuild && cd _site && python3 -m http.server 8888)
+#!/bin/bash
+
+set -e
+
+./build.sh
+
+(cd _site && python3 -m http.server 8888)
