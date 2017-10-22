@@ -2,9 +2,13 @@
 
 module Main where
 
+import qualified Data.ByteString.Lazy as LBS
 import Data.Monoid ( (<>) )
 import Hakyll
 import Text.Pandoc
+import qualified Data.Text as T
+import qualified Data.Text.Encoding as T
+import Text.Jasmine ( minify )
 
 defCtx
   = defaultContext
@@ -21,6 +25,10 @@ main = hakyll $ do
   match "css/*" $ do
     route   idRoute
     compile compressCssCompiler
+
+  match "js/*" $ do
+    route idRoute
+    compile compressJsCompiler
 
   match "font/*" $ do
     route   idRoute
@@ -88,3 +96,9 @@ main = hakyll $ do
           >>= relativizeUrls
 
   match "templates/*" $ compile templateCompiler
+
+compressJsCompiler :: Compiler (Item String)
+compressJsCompiler = do
+  let minjs = T.unpack . T.decodeUtf8 . LBS.toStrict . minify . LBS.fromStrict . T.encodeUtf8 . T.pack . itemBody
+  s <- getResourceString
+  pure $ itemSetBody (minjs s) s
