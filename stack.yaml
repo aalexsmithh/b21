@@ -2,6 +2,8 @@ resolver: lts-9.10
 packages:
     - frontend
     - backend
-extra-deps: []
+    - iCalendar
+extra-deps:
+    - mime-0.4.0.2
 flags: {}
 extra-package-dbs: []
