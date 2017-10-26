@@ -3,6 +3,7 @@ packages:
     - frontend
     - backend
     - iCalendar
+    - debug
 extra-deps:
     - mime-0.4.0.2
 flags: {}
