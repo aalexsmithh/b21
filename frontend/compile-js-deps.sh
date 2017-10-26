@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# concatenates all javascript dependencies into one file
+# concatenates all javascript dependencies followed by our custom javascript
+# into one file
+
+set -e
 
 mkdir -p js
 
@@ -14,4 +17,4 @@ underscore
 moment
 clndr
 EOF
-xargs cat > js/dependencies.js
+xargs -I {} cat {} js/custom.js > js/dependencies.js
