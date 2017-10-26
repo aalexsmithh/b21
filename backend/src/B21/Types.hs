@@ -29,7 +29,7 @@ instance ToJSON Event where
     , "and" .= eventInfo
     ]
 
-iso8601 = iso8601DateFormat (Just "%H:%M:%S")
+iso8601 = iso8601DateFormat (Just "%H:%M:%SZ")
 
 instance ToJSON DateTime where
   toJSON (DateTime t) = String $ pack (formatTime defaultTimeLocale iso8601 t)

@@ -48,6 +48,7 @@ executable b21-backend-exe
     base,
     b21-backend,
     wai,
+    wai-extra,
     warp,
     servant-server,
     text,

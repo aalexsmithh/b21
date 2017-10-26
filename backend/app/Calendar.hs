@@ -4,7 +4,7 @@ import B21.Types as B21
 
 import Control.Exception
 import Data.Default.Class ( def )
-import Data.Maybe ( catMaybes )
+import Data.Maybe ( catMaybes, fromMaybe )
 import Data.Text.Lazy ( Text, toStrict )
 import Data.Typeable ( cast )
 import qualified Data.Map as M
@@ -37,22 +37,38 @@ getRemoteCalendar req man = do
     Left s -> throwIO (CalendarParseException s)
     Right x -> pure x
 
+-- | Forgets what exactly the problem is.
+forget :: Either a b -> Maybe b
+forget (Right x) = Just x
+forget (Left _) = Nothing
+
+toEither :: e -> Maybe a -> Either e a
+toEither e = maybe (Left e) Right
+
+catEither :: [Either a b] -> ([a], [b])
+catEither [] = ([], [])
+catEither (e:es) = case e of
+  Left x -> (x:as, bs)
+  Right x-> (as, x:bs)
+  where
+    (as, bs) = catEither es
+
 -- | Extracts all events from a calendar.
-events :: VCalendar -> [Event]
-events VCalendar{..} = catMaybes $ f <$> M.toList vcEvents where
-  f :: ((Text, Maybe (Either Date ICal.DateTime)), VEvent) -> Maybe Event
-  f ((uid, Just (Right dt)), VEvent{..}) = do
-    dtstart <- veDTStart >>= \case
+events :: VCalendar -> ([String], [Event])
+events VCalendar{..} = catEither $ f <$> M.toList vcEvents where
+  f :: ((Text, Maybe (Either Date ICal.DateTime)), VEvent) -> Either String Event
+  f ((uid, _), VEvent{..}) = do
+    dtstart <- toEither "no DTStart" veDTStart >>= \case
       DTStartDateTime{..} -> b21dateTime dtStartDateTimeValue
-      _ -> Nothing
+      _ -> Left "event start is not a datetime"
 
-    dtend <- veDTEndDuration >>= \case
+    dtend <- toEither "no DTEnd" veDTEndDuration >>= \case
       Left DTEndDateTime{..} -> b21dateTime dtEndDateTimeValue
-      Right _ -> Nothing
+      Right _ -> Left "DTEnd is not a datetime"
 
-    summary <- summaryValue <$> veSummary
+    summary <- toEither "no summary" (summaryValue <$> veSummary)
 
-    desc <- descriptionValue <$> veDescription
+    desc <- toEither "no description" (descriptionValue <$> veDescription)
 
     pure Event
       { eventDate = dtstart
@@ -61,9 +77,7 @@ events VCalendar{..} = catMaybes $ f <$> M.toList vcEvents where
       , eventInfo = toStrict summary
       }
 
-  f _ = Nothing
-
-b21dateTime :: ICal.DateTime -> Maybe B21.DateTime
+b21dateTime :: ICal.DateTime -> Either String B21.DateTime
 b21dateTime d = case d of
   UTCDateTime utc -> pure (B21.DateTime utc)
-  _ -> Nothing
+  _ -> Left "date is not UTC"

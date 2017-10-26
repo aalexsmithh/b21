@@ -8,11 +8,12 @@ import Calendar
 import Control.Concurrent.Async ( async, waitCatch )
 import Control.Concurrent.MVar
 import Control.Exception ( SomeException )
+import Control.Monad ( forM_ )
 import Control.Monad.IO.Class
 import Data.Text ( Text )
 import qualified Data.Text.IO as T
--- import Network.Wai
 import Network.Wai.Handler.Warp
+import Network.Wai.Middleware.RequestLogger ( logStdoutDev )
 import Network.HTTP.Client ( parseRequest_, Request, Manager, newManager )
 import Network.HTTP.Client.TLS ( tlsManagerSettings )
 import Servant
@@ -38,7 +39,7 @@ locking l m = withMVar l (const m)
 
 getConfig :: IO SiteConfig
 getConfig = do
-  port <- read <$> getEnv "B21_PORT"
+  port <- read <$> getEnv "B21_API_PORT"
   path <- getEnv "B21_EMAIL_FILEPATH"
   calReq <- parseRequest_ <$> getEnv "B21_CALENDAR_URI"
   lock <- newMVar ()
@@ -54,7 +55,7 @@ getConfig = do
 main :: IO ()
 main = do
   conf <- getConfig
-  run (confServerPort conf) $ serve b21Api $ server conf
+  run (confServerPort conf) $ logStdoutDev $ serve b21Api $ server conf
 
 catchAll :: IO a -> IO (Either SomeException a)
 catchAll m = async m >>= waitCatch
@@ -68,8 +69,14 @@ server SiteConfig{..} = addEmail :<|> getEvents where
       Right _ -> pure "ok"
 
   getEvents :: Handler [Event]
-  getEvents = liftIO $
-    concatMap events . fst <$> getRemoteCalendar confCalendarReq confHttpManager
+  getEvents = liftIO $ do
+    let r (ers, evs) (ers', evs') = (ers ++ ers', evs ++ evs')
+    (ers, evs) <- foldr r ([], []) . fmap events . fst
+      <$> getRemoteCalendar confCalendarReq confHttpManager
+
+    forM_ ers $ \e -> putStrLn $ "error interpreting event: " ++ e
+
+    pure evs
 
   addEmail' :: Text -> IO ()
   addEmail' x = locking confFileLock (T.appendFile confEmailFilePath x)
