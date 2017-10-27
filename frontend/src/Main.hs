@@ -22,12 +22,12 @@ main = hakyll $ do
     route   idRoute
     compile copyFileCompiler
 
-  match "css/*" $ do
-    route   idRoute
+  match "dist/css/*" $ do
+    route   (gsubRoute "dist/" (const ""))
     compile compressCssCompiler
 
-  match "js/*" $ do
-    route idRoute
+  match "dist/js/*" $ do
+    route   (gsubRoute "dist/" (const ""))
     compile compressJsCompiler
 
   match "font/*" $ do
