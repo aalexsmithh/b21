@@ -13,7 +13,6 @@ import System.Environment ( getEnv )
 
 forwardRequest :: ProxyDest -> Request -> IO WaiProxyResponse
 forwardRequest dest req = do
-  print req
   pure (WPRModifiedRequest req' dest) where
     req' = req { rawPathInfo = BS.drop 4 (rawPathInfo req) }
 
