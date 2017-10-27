@@ -1,0 +1,53 @@
+body {
+    background-color: white;
+}
+
+#calendar-widget {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: start;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+div.clndr-controls {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 0.5em;
+}
+
+div.clndr-controls > * {
+    min-width: 1.5em;
+    text-align: center;
+    margin: 0.5em;
+}
+
+div.days {
+    width: 100%;
+}
+
+div.day, div.header-day {
+    width: 14.285%; /* approximately one seventh */
+    text-align: center;
+    float: left;
+    padding: 1em 0;
+}
+
+div.header-day {
+    background-color: #caa;
+}
+
+div.day {
+    background-color: #fcc;
+}
+
+div.day.event {
+    font-weight: bold;
+}
+
