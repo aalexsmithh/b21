@@ -9,6 +9,7 @@ set -e
 export B21_DEBUG_PORT=8080
 export B21_API_PORT=8082
 export B21_FRONTEND_PATH="../frontend/_site"
+export B21_CALENDAR_URI="http://localhost:8084/one-event.ics"
 
 (cd ../frontend ; ./build.sh "$@")
 (cd ../backend ; exec ./debug.sh "$@") &
