@@ -34,9 +34,9 @@ main = hakyll $ do
     route   idRoute
     compile copyFileCompiler
 
-  match "files/*" $ do
-    route   idRoute
-    compile copyFileCompiler
+  -- match "files/*" $ do
+  --   route   idRoute
+  --   compile copyFileCompiler
 
   create staticPages $ do
     route $
