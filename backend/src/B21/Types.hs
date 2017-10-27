@@ -17,16 +17,18 @@ data AddEmail
 
 data Event
   = Event
-    { eventDate :: DateTime
-    , eventStart :: DateTime
+    { eventStart :: DateTime
     , eventEnd :: DateTime
-    , eventInfo :: Text
+    , eventTitle :: Text
+    , eventSummary :: Text
     }
 
 instance ToJSON Event where
   toJSON Event{..} = object
-    [ "date" .= eventDate
-    , "and" .= eventInfo
+    [ "title" .= eventTitle
+    , "summary" .= eventSummary
+    , "startDate" .= eventStart
+    , "endDate" .= eventEnd
     ]
 
 iso8601 = iso8601DateFormat (Just "%H:%M:%SZ")

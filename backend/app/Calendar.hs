@@ -71,10 +71,10 @@ events VCalendar{..} = catEither $ f <$> M.toList vcEvents where
     desc <- toEither "no description" (descriptionValue <$> veDescription)
 
     pure Event
-      { eventDate = dtstart
-      , eventStart = dtstart
+      { eventStart = dtstart
       , eventEnd = dtend
-      , eventInfo = toStrict summary
+      , eventTitle = toStrict summary
+      , eventSummary = toStrict desc
       }
 
 b21dateTime :: ICal.DateTime -> Either String B21.DateTime
