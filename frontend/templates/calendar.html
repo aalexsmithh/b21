@@ -1,5 +1,5 @@
-<div id="calendar-widget">
-    <div class="events-this-month">
+<div id="calendar-widget-container">
+    <div id="events-this-month">
         <h4>Events this month</h4>
         <ul>
             <% _.each(days, function(day) { %>
@@ -29,7 +29,7 @@
             <% }); %>
         </ul>
     </div>
-    <div>
+    <div id="calendar-widget">
         <div class="row clndr-controls">
             <button class="clndr-prev-button">&lsaquo;</button>
             <div class="month"><%= month %></div>

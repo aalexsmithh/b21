@@ -29,7 +29,8 @@ xargs -I {} cat {} js/custom.js > dist/js/dependencies.js
 # we do this crazy xargs stuff (instead of `cat css/*`) to make sure we get the
 # correct order of files, since declaration order sometimes disambiguates rule
 # precedence in CSS.
-xargs cat > dist/css/default.css <<'EOF'
+xargs cat > dist/css/dependencies.css <<'EOF'
 css/skeleton.css
+css/normalize.css
 css/custom.css
 EOF

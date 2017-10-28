@@ -2,30 +2,61 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Building21 | $title$</title>
-        <link rel="stylesheet" type="text/css" href="/css/default.css" />
+        <!-- Basic Page Needs
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <title> Building 21 | $title$ </title>
+        <meta name="description" content="">
+
+        <!-- Mobile Specific Metas
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="css/dependencies.css">
+
+        <!-- JavaScript
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <script src="/js/dependencies.js"></script>
+
+        <!-- Favicon
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="icon" type="image/png" href="images/favicon.png">
     </head>
-    <body class="page-center">
-        <div id="header">
-            <div id="title">
-                Building21
+    <body>
+        <div id="white-hack">
+            <div id="header" class="clearfix">
+                <div class="row logo-header">
+                    <img src="img/b21.svg" alt="Building21 Logo">
+                </div>
+
+                <ul id="navigation">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/projects.html">Projects</a></li>
+                    <li><a href="/about.html">About</a></li>
+                </ul>
             </div>
-            <ul id="navigation">
-                <li><a href="/">Home</a></li>
-                <li><a href="/projects.html">Projects</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
-        </div>
 
-        <div id="content">
-            <h1>$title$</h1>
+            <div id="content">
+                <!-- page title -->
+                <div class="container">
+                    <div class="row">
+                        <h2 class='b21-red'> $title$ </h2>
+                    </div>
+                </div>
 
-            $body$
-        </div>
-        <div id="footer">
-            This is a footer.
+                <div id="body-content">
+                    $body$
+                </div>
+            </div>
+
+            <div id="footer" class="row u-full-width footer">
+                <div class="container" style="margin-top: 1em">
+                    <h2 style="font-family: linotte; color: #E9F0F2">Building 21</h2>
+                    <h6 style="font-family: linotte; color: #E9F0F2; text-align: right; margin-top: -1.5em">Other footer links</h6> 
+                </div>
+            </div>
         </div>
     </body>
 </html>

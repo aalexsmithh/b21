@@ -18,8 +18,12 @@ staticPages
 
 main :: IO ()
 main = hakyll $ do
-  match "images/*" $ do
-    route   idRoute
+  match "static/img/*" $ do
+    route (gsubRoute "static/" (const ""))
+    compile copyFileCompiler
+
+  match "static/font/*" $ do
+    route (gsubRoute "static/" (const ""))
     compile copyFileCompiler
 
   match "dist/css/*" $ do
@@ -29,14 +33,6 @@ main = hakyll $ do
   match "dist/js/*" $ do
     route   (gsubRoute "dist/" (const ""))
     compile compressJsCompiler
-
-  match "font/*" $ do
-    route   idRoute
-    compile copyFileCompiler
-
-  -- match "files/*" $ do
-  --   route   idRoute
-  --   compile copyFileCompiler
 
   create staticPages $ do
     route $
@@ -99,6 +95,8 @@ main = hakyll $ do
 
 compressJsCompiler :: Compiler (Item String)
 compressJsCompiler = do
-  let minjs = T.unpack . T.decodeUtf8 . LBS.toStrict . minify . LBS.fromStrict . T.encodeUtf8 . T.pack . itemBody
+  let f = LBS.fromStrict . T.encodeUtf8 . T.pack
+  let f' = T.unpack . T.decodeUtf8 . LBS.toStrict
+  let minjs = f' . minify . f . itemBody
   s <- getResourceString
   pure $ itemSetBody (minjs s) s
