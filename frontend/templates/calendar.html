@@ -1,0 +1,51 @@
+<div id="calendar-widget-container">
+    <div id="events-this-month">
+        <h4>Events this month</h4>
+        <ul>
+            <% _.each(days, function(day) { %>
+                <% _.each(day.events, function(event) { %>
+                <li>
+                    <span class="event-title"><%= event.title %></span> <br>
+                    <span class="event-date">
+                        <%= moment(event.date).fromNow() %>
+                    </span> <br>
+                    <% if(event.startDate && event.endDate) { %>
+                    <span class="event-time">
+                        from
+                        <span class="start time">
+                            <%= event.startDate.format(niceTimeFormat) %>
+                        </span>
+                        to
+                        <span class="end time">
+                            <%= event.endDate.format(niceTimeFormat) %>
+                        </span>
+                    </span> <br>
+                    <% } %>
+                    <% if(event.summary) { %>
+                    <p> <%= event.summary %> </p>
+                    <% } %>
+                </li>
+                <% }); %>
+            <% }); %>
+        </ul>
+    </div>
+    <div id="calendar-widget">
+        <div class="row clndr-controls">
+            <button class="clndr-prev-button">&lsaquo;</button>
+            <div class="month"><%= month %></div>
+            <button class="clndr-next-button">&rsaquo;</button>
+        </div>
+        <div class="row clndr-grid">
+            <div class="days-of-the-week clearfix">
+                <% _.each(daysOfTheWeek, function(day) { %>
+                <div class="header-day"><%= day %></div>
+                <% }); %>
+                <div class="days">
+                    <% _.each(days, function(day) { %>
+                    <div class="<%= day.classes %>"><%= day.day %></div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
