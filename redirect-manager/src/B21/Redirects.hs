@@ -21,7 +21,7 @@ import Text.Megaparsec.Text
 import qualified Text.PrettyPrint.ANSI.Leijen as P
 
 type B21Redirects
-  = "update" :> Post '[PlainText] T.Text
+  = "update" :> Get '[PlainText] T.Text
 
 b21Redirects :: Proxy B21Redirects
 b21Redirects = Proxy
