@@ -1,7 +1,5 @@
-/.stack-work/
 /dist/
 /_site/
 /_cache/
 /yarn.lock
 /node_modules/
-/js/dependencies.js
