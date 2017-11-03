@@ -1,4 +1,11 @@
-module B21.Redirects where
+module B21.Redirects
+( b21Redirects
+, parseRedirects
+, B21Redirects
+, Redirect
+, Redirects
+, renderRedirects
+) where
 
 import Control.Exception hiding ( try )
 import Data.Monoid ( (<>) )
@@ -59,11 +66,6 @@ parseRedirects p t = left (T.pack . show) $ parse (many redirect <* eof) p t whe
     body <- some p
     pure (T.pack $ c : body)
 
-left :: (e -> e') -> Either e a -> Either e' a
-left f ei = case ei of
-  Left e -> Left (f e)
-  Right x -> Right x
-
 -- | Renders a list of redirects as nginx @location@ directives creating
 -- temporary redirects.
 renderRedirects :: Redirects -> T.Text
@@ -84,3 +86,8 @@ renderRedirects = T.pack . ($ "") . P.displayS . P.renderCompact . go where
   caret = P.text "^"
 
   text = P.text . T.unpack
+
+left :: (e -> e') -> Either e a -> Either e' a
+left f ei = case ei of
+  Left e -> Left (f e)
+  Right x -> Right x
