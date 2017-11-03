@@ -1,0 +1,13 @@
+[Unit]
+Description=Building21 Redirect Manager
+After=network-online.target
+
+[Service]
+WorkingDirectory=/var/hakyll
+User=hakyll
+Group=hakyll
+ExecStart=/var/hakyll/.local/bin/b21-redirect-manager-exe
+EnvironmentFile=/var/hakyll/b21-redirect-manager.production.env
+
+[Install]
+WantedBy=multi-user.target
