@@ -52,7 +52,8 @@ parseRedirects p t = left (T.pack . show) $ parse (many redirect <* eof) p t whe
       , redirectTo = uri
       }
 
-  -- | Parse a path component of the form: slash alphanumeric+
+  -- | Parse a path component of the form:
+  -- @slash (non-slash alphanumeric or symbol)+@.
   pathComponent :: Parser T.Text
   pathComponent = do
     c <- char '/'
