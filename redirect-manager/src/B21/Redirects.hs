@@ -20,9 +20,6 @@ import Text.Megaparsec.Char
 import Text.Megaparsec.Text
 import qualified Text.PrettyPrint.ANSI.Leijen as P
 
-data RedirectsParseError
-  = RedirectsParseError T.Text
-
 type B21Redirects
   = "update" :> Post '[PlainText] T.Text
 
