@@ -23,6 +23,7 @@ library
     TypeFamilies,
     TypeOperators
   exposed-modules:
+    B21.Nginx,
     B21.Redirects
   build-depends:
     ansi-wl-pprint,
@@ -30,7 +31,8 @@ library
     megaparsec,
     network-uri,
     servant,
-    text
+    text,
+    process
 
   default-language:    Haskell2010
 

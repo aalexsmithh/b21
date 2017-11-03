@@ -1,5 +1,6 @@
 module Main where
 
+import B21.Nginx
 import B21.Redirects
 
 import Control.Exception hiding ( Handler )
@@ -44,7 +45,10 @@ server conf = update where
       Left e ->
         throwError err500 { errBody = utf8l $ "the redirects file is invalid: " <> e }
       Right x -> do
-        liftIO (writeConfig $ renderRedirects x)
+        liftIO $ do
+          writeConfig (renderRedirects x)
+          checkNginx
+          reloadNginx
         pure "redirects updated successfully"
 
   writeConfig :: T.Text -> IO ()
