@@ -34,14 +34,15 @@ data Redirect
     }
 
 parseRedirects :: FilePath -> T.Text -> Either T.Text Redirects
-parseRedirects p t = left (T.pack . show) $ parse (many redirect <* eof) p t where
+parseRedirects p t = left (T.pack . show) $ parse parser p t where
+  parser = (redirect `sepBy` eol) <* optional eol <*  eof
   redirect :: Parser Redirect
   redirect = do
     path <- T.concat <$> some pathComponent
     skipSome spaceChar
     string ("->" :: String)
     skipSome spaceChar
-    dest <- printChar `someTill` eol
+    dest <- some (alphaNumChar <|> symbolChar)
     uri <-
       maybe
       (fail $ "invalid URI: " <> dest)
