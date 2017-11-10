@@ -42,7 +42,7 @@ parseRedirects p t = left (T.pack . show) $ parse parser p t where
     skipSome spaceChar
     string ("->" :: String)
     skipSome spaceChar
-    dest <- some (alphaNumChar <|> symbolChar)
+    dest <- some (alphaNumChar <|> symbolChar <|> punctuationChar)
     uri <-
       maybe
       (fail $ "invalid URI: " <> dest)
