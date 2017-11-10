@@ -3,6 +3,7 @@ module Main where
 import B21.Nginx
 import B21.Redirects
 
+import Control.Concurrent ( threadDelay, forkIO )
 import Control.Exception hiding ( Handler )
 import Control.Monad ( guard )
 import Control.Monad.IO.Class ( liftIO )
@@ -48,7 +49,10 @@ server conf = update where
         liftIO $ do
           writeConfig (renderRedirects x)
           checkNginx
-          reloadNginx
+          _ <- forkIO $ do
+            threadDelay 5000000 -- five seconds
+            reloadNginx
+          pure ()
         pure "redirects updated successfully"
 
   writeConfig :: T.Text -> IO ()
