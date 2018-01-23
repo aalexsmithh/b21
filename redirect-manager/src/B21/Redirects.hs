@@ -19,6 +19,9 @@ import Text.Megaparsec
 import Text.Megaparsec.Char
 import qualified Text.PrettyPrint.ANSI.Leijen as P
 
+type Parser = Parsec (ParseError Char Void) String
+deriving instance Ord (ParseError Char Void)
+
 type B21Redirects
   = "update" :> Get '[PlainText] T.Text
 
@@ -33,13 +36,13 @@ data Redirect
     }
 
 parseRedirects :: FilePath -> T.Text -> Either T.Text Redirects
-parseRedirects p t = left (T.pack . show) $ parse parser p t where
+parseRedirects p t = left (T.pack . show) $ parse parser p (T.unpack t) where
   parser = (redirect `sepBy` eol) <* optional eol <*  eof
   redirect :: Parser Redirect
   redirect = do
     path <- T.concat <$> some pathComponent
     skipSome spaceChar
-    string ("->" :: String)
+    string "->"
     skipSome spaceChar
     dest <- some (alphaNumChar <|> symbolChar <|> punctuationChar)
     uri <-
