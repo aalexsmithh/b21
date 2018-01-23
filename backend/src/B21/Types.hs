@@ -54,3 +54,4 @@ data TimesheetInfo
   = TimesheetInfo
     { timesheetUrl :: Text
     }
+  deriving (Generic, ToJSON)

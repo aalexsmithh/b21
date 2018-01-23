@@ -1,0 +1,152 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    height: 100%;
+    background-image: url("/img/bbb.svg");
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#white-hack {
+    height: 100%;
+    width: 100%;
+    background-color: hsla(0,0%,100%,0.85);
+}
+
+#header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.logo-header {
+    max-height: 10vh;
+    width: 100%;
+}
+
+.logo-header img {
+    height: 5em;
+    width: auto;
+}
+
+ul#navigation {
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    align-items: baseline;
+    float: right;
+    margin: 0;
+    list-style: none;
+}
+
+ul#navigation li {
+    margin: 1em 1em;
+}
+
+#content {
+}
+
+#body-content {
+	background-color: hsla(0,0%,100%,0.85);
+	box-shadow: 0 0 3em 1em rgba(255, 255, 255, 1);
+
+    padding: 1em 0.5em;
+	margin-bottom: 3em;
+}
+
+@media (max-width: 550px) {
+	body {
+		background-image: none;
+	}
+}
+
+#calendar-widget-container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: center;
+}
+
+#events-this-month {
+    padding: 1em;
+}
+
+#calendar-widget {
+    padding: 1em;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+div.clndr-controls {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 0.5em;
+}
+
+div.clndr-controls > * {
+    min-width: 1.5em;
+    text-align: center;
+    margin: 0.5em;
+}
+
+div.days {
+    width: 100%;
+}
+
+div.day, div.header-day {
+    width: 14.285%; /* approximately one seventh */
+    text-align: center;
+    float: left;
+    padding: 1em 0;
+}
+
+div.header-day {
+    background-color: #caa;
+}
+
+div.day {
+    background-color: #fcc;
+}
+
+div.day.event {
+    font-weight: bold;
+}
+
+.b21-red {
+    color: #564D4A;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: linotte sans;
+}
+
+@font-face {
+    font-family: 'league_spartan';
+    src: url('/font/leaguespartan.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'linotte';
+	src: url('/font/linotte.otf');
+	font-weight: normal;
+    font-style: normal;
+}
