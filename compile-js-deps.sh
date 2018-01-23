@@ -32,4 +32,5 @@ xargs -I {} cat {} js/custom.js > frontend/js/dependencies.js
 xargs cat > frontend/css/dependencies.css <<'EOF'
 css/skeleton.css
 css/normalize.css
+css/custom.css
 EOF
