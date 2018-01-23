@@ -9,7 +9,7 @@ $(function () {
         // if that succeeds, then we render the calendar
         .done(function(res) {
             console.log(JSON.stringify(res));
-            $('#calendar').clndr({
+            $('#calendar-widget-container').clndr({
                 events: _(res).map(function(event) {
                     // convert the event time from UTC to localtime, and throw
                     // away the time info to just extract the date.
@@ -25,6 +25,6 @@ $(function () {
         // if it fails then we log the error and say sorry.
         .fail(function(res) {
             console.log(res);
-            $('#calendar').text('Unable to load the calendar.');
+            $('#calendar-widget-container').text('Unable to load the calendar.');
         });
 });
