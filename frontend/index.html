@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Building 21</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+	  
+	  <h1 style="margin: 10rem 0px 10rem 0px">Building 21</h1>
+	  
+    <div class="row">
+      <div class="one-third column" >
+        <h4>Vision</h4>
+        <p>Building 21 is an experiment in new, innovative, and beautiful ways to approach the university experience—an open lab where curious minds from all levels and disciplines are invited to come together to collaborate, to think, and to dream outside the traditional confines of their areas of study and expertise. In Building 21, one explores, seeks and pursues unconventional ideas, and develops unique and beautiful systems, processes, and methods of understanding. Building 21 is a place where creativity is encouraged, beauty and chaos are celebrated and frontiers are meant to be ignored.</p>
+      </div>
+      <div class="two-thirds column" >
+        <h4>Mission</h4>
+        <p>Inspired by Building 20 at MIT, B21 provides a hub for creative scholars and staff to network with like-minded talents from across our campuses, and freely explore ideas and projects they may otherwise not have. This is a place where students, faculty and staff can re-experience, re-model, re-build, and re-invent the entire edifice of higher education.</p>
+ 
+		<p>From quantum physics to student affairs; from neuroscience to student politics; from philosophy to immersive realities; from the microcosm to the campus, B21 is a space where one can explore, play with, manipulate, bend, break, probe, and recreate the multi-faceted aspects, dimensions, and experiences of ideas, knowledge, thinking, self-development, and education.</p>
+ 
+		<p>B21 is not an accelerator nor a research center; it will not seek research funding and it will not give credits. Projects do not need to produce results to be considered a success, and experimentation for the sake of experimentation is more than welcomed. B21 is a sandbox, a theatre studio, a playground, and a renaissance ‘atelier.’
+</p>
+      </div>
+    </div>
+    
+    <div class="row" style="border-bottom: 1px solid black; border-top: 1px solid black; padding-top: 2rem">
+	    <div class="one-half column" style="text-align: center;">
+	    	<h4>Our Code of Conduct</h4>
+	    </div>
+	    <div class="one-half column" style="text-align: center;">
+	    	<a class="button" href="#">Read it now</a>
+	    </div>
+	</div>
+	
+	<div class="row" style="margin-top: 2rem">
+		<div id="calendar-widget-container">
+		    <div id="events-this-month">
+		        <h4>Events this month</h4>
+		        <ul>
+		            <% _.each(days, function(day) { %>
+		                <% _.each(day.events, function(event) { %>
+		                <li>
+		                    <span class="event-title"><%= event.title %></span> <br>
+		                    <span class="event-date">
+		                        <%= moment(event.date).fromNow() %>
+		                    </span> <br>
+		                    <% if(event.startDate && event.endDate) { %>
+		                    <span class="event-time">
+		                        from
+		                        <span class="start time">
+		                            <%= event.startDate.format(niceTimeFormat) %>
+		                        </span>
+		                        to
+		                        <span class="end time">
+		                            <%= event.endDate.format(niceTimeFormat) %>
+		                        </span>
+		                    </span> <br>
+		                    <% } %>
+		                    <% if(event.summary) { %>
+		                    <p> <%= event.summary %> </p>
+		                    <% } %>
+		                </li>
+		                <% }); %>
+		            <% }); %>
+		        </ul>
+		    </div>
+		    <div id="calendar-widget">
+		        <div class="row clndr-controls">
+		            <button class="clndr-prev-button">&lsaquo;</button>
+		            <div class="month"><%= month %></div>
+		            <button class="clndr-next-button">&rsaquo;</button>
+		        </div>
+		        <div class="row clndr-grid">
+		            <div class="days-of-the-week clearfix">
+		                <% _.each(daysOfTheWeek, function(day) { %>
+		                <div class="header-day"><%= day %></div>
+		                <% }); %>
+		                <div class="days">
+		                    <% _.each(days, function(day) { %>
+		                    <div class="<%= day.classes %>"><%= day.day %></div>
+		                    <% }); %>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
