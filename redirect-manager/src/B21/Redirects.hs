@@ -17,7 +17,6 @@ import Servant.API
 import System.IO ( FilePath )
 import Text.Megaparsec
 import Text.Megaparsec.Char
-import Text.Megaparsec.Text
 import qualified Text.PrettyPrint.ANSI.Leijen as P
 
 type B21Redirects
