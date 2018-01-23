@@ -52,6 +52,6 @@ data CreateTimesheet
 
 data TimesheetInfo
   = TimesheetInfo
-    { timesheetUrl :: Text
+    { timesheetUrl :: String
     }
   deriving (Generic, ToJSON)
