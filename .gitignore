@@ -1,2 +1,6 @@
 .stack-work/
 *.DS_Store
+/frontend/css
+/frontend/js
+/node_modules/
+/package-lock.json
