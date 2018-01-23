@@ -61,7 +61,7 @@ catchAll :: IO a -> IO (Either SomeException a)
 catchAll m = async m >>= waitCatch
 
 server :: SiteConfig -> Server B21Api
-server SiteConfig{..} = addEmail :<|> getEvents where
+server SiteConfig{..} = addEmail :<|> getEvents :<|> makeTimesheet where
   addEmail :: AddEmail -> Handler Text
   addEmail AddEmail{..} = do
     liftIO (catchAll $ addEmail' addEmailAddress) >>= \case
@@ -77,6 +77,9 @@ server SiteConfig{..} = addEmail :<|> getEvents where
     forM_ ers $ \e -> putStrLn $ "error interpreting event: " ++ e
 
     pure evs
+
+  makeTimesheet :: CreateTimesheet -> Maybe Bool -> Handler TimesheetInfo
+  makeTimesheet = error "stub: makeTimesheet"
 
   addEmail' :: Text -> IO ()
   addEmail' x = locking confFileLock (T.appendFile confEmailFilePath x)
