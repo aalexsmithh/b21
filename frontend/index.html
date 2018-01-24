@@ -25,14 +25,14 @@
   <script src="js/dependencies.js"></script>
   <script id="calendar-template" type="text/template">
 <div id="events-this-month">
-    <h4>Events this month</h4>
+    <h4>Events</h4>
     <ul>
         <% _.each(days, function(day) { %>
             <% _.each(day.events, function(event) { %>
             <li>
-                <span class="event-title"><%= event.title %></span> <br>
+                <span class="event-title"><b><%= event.title %></b></</span> <br>
                 <span class="event-date">
-                    <%= moment(event.date).fromNow() %>
+                    <%= moment(event.date) %>,<%= moment(event.date).fromNow() %>
                 </span> <br>
                 <% if(event.startDate && event.endDate) { %>
                 <span class="event-time">
@@ -56,10 +56,11 @@
 </div>
 <div id="calendar-widget">
     <div class="row clndr-controls">
-        <button class="clndr-prev-button">&lsaquo;</button>
+        <button class="clndr-previous-button">&lsaquo;</button>
         <div class="month"><%= month %></div>
         <button class="clndr-next-button">&rsaquo;</button>
     </div>
+<!--
     <div class="row clndr-grid">
         <div class="days-of-the-week clearfix">
             <% _.each(daysOfTheWeek, function(day) { %>
@@ -72,6 +73,7 @@
             </div>
         </div>
     </div>
+-->
 </div>
   </script>
 </head>
