@@ -24,18 +24,16 @@
 
   <script src="js/dependencies.js"></script>
   <script id="calendar-template" type="text/template">
-<div id="events-this-month" class="row" style="width: 100% !important">
-    <div class="one-third column">
-	    <h4>Events</h4>
-    </div>
-    <div class="one-third column">
-	    <div class="clndr-controls">
-        	<button class="clndr-previous-button">&lsaquo;</button>
-			<div class="month"><%= month %><y5/div>
-			<button class="clndr-next-button">&rsaquo;</button>
-		</div>
-    </div>
-    </div>
+<div id="events-this-month" class="row">
+	<h4>Events</h4>
+    <div class="clndr-controls">
+    	<button class="clndr-previous-button">&lsaquo;</button>
+		<div class="month"><%= month %><y5/div>
+		<button class="clndr-next-button">&rsaquo;</button>
+	</div>
+</div>
+
+<div class="row">
     <ul>
         <% _.each(days, function(day) { %>
             <% _.each(day.events, function(event) { %>
