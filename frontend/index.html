@@ -25,14 +25,24 @@
   <script src="js/dependencies.js"></script>
   <script id="calendar-template" type="text/template">
 <div id="events-this-month" class="row">
-    <h4>Events</h4>
+    <div class="one-third column">
+	    <h4>Events</h4>
+    </div>
+    <div class="one-third column">
+	    <div class="clndr-controls">
+        	<button class="clndr-previous-button">&lsaquo;</button>
+			<div class="month"><%= month %><y5/div>
+			<button class="clndr-next-button">&rsaquo;</button>
+		</div>
+    </div>
+    </div>
     <ul>
         <% _.each(days, function(day) { %>
             <% _.each(day.events, function(event) { %>
             <li>
                 <span class="event-title"><b><%= event.title %></b></</span> <br>
                 <span class="event-date">
-                    <%= moment(event.date).format('MM/DD') %>, <%= moment(event.date).fromNow() %>
+                    <%= moment(event.date).format('DD/MM') %>, <%= moment(event.date).fromNow() %>
                 </span> <br>
                 <% if(event.startDate && event.endDate) { %>
                 <span class="event-time">
@@ -54,13 +64,8 @@
         <% }); %>
     </ul>
 </div>
-<div id="calendar-widget">
-    <div class="row clndr-controls">
-        <button class="clndr-previous-button">&lsaquo;</button>
-        <div class="month"><%= month %></div>
-        <button class="clndr-next-button">&rsaquo;</button>
-    </div>
 <!--
+<div id="calendar-widget">
     <div class="row clndr-grid">
         <div class="days-of-the-week clearfix">
             <% _.each(daysOfTheWeek, function(day) { %>
@@ -73,8 +78,8 @@
             </div>
         </div>
     </div>
--->
 </div>
+-->
   </script>
 </head>
 <body>
