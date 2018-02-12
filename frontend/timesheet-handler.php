@@ -20,12 +20,17 @@
 		
 		$rate = $_POST["rate"];
 		
-		echo $f_y;
-		echo $f_m;
-		echo $f_d;
+		$weekstart = $f_y."-".$f_m."-".$f_d;
+		$weekend = $t_y."-".$t_m."-".$t_d;
 		
-// 		$output = shell_exec("./main.sh $entry");	
 		
+		$output = shell_exec("TS_TOT_SU="$su" TS_TOT_MO="$m" TS_TOT_TU="$t" \
+								TS_TOT_WE="$w" TS_TOT_TH="$r" TS_TOT_FR="$f" \
+								TS_TOT_SA="$sa" TS_RATE="$rate" TS_NAME="$n" \
+								TS_ID="$id" ./make-timsheet.sh");	
+		
+		
+		header( "Location: $output" );
 		}
 
 ?>
