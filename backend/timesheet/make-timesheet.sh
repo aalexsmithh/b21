@@ -1,7 +1,5 @@
 #!/bin/bash
 
-OUTDIR=
-OUTNAME="${TS_ID}-${TS_SUNDAY}.pdf"
 #
 # TS_NAME="Jacob Errington"
 # TS_ID="260636023"
@@ -95,6 +93,3 @@ convert casual_timesheet.png \
     -annotate +2075+2560 "${TS_RATE} \$/h" \
     -annotate +2075+2670 "\$ $TS_TOTAL_MONEY" \
     "${OUTNAME}"
-
-mv "$OUTNAME" /srv/http/b21/pdf
-echo "/pdf/$OUTNAME"
