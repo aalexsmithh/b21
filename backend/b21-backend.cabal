@@ -32,7 +32,6 @@ library
     DeriveAnyClass,
     DeriveFunctor,
     DeriveGeneric,
-    FlexibleContexts,
     GADTs,
     OverloadedStrings,
     RecordWildCards,
@@ -67,6 +66,7 @@ executable b21-backend-exe
   default-language:    Haskell2010
   default-extensions:
     DeriveDataTypeable,
+    FlexibleContexts,
     LambdaCase,
     OverloadedStrings,
     RecordWildCards
