@@ -2,7 +2,7 @@
 
 set -e
 
-ssh hakyll@building21.ca <<EOF
+ssh -T hakyll@building21.ca <<EOF
 set -e
 cd b21
 echo '>>> UPDATING SOURCES'
