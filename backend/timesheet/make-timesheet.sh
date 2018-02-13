@@ -55,6 +55,7 @@ TS_TOTAL_MONEY=$(echo "$TS_RATE * $TS_TOTAL_H" | bc)
 convert "${TS_BASE}" \
     -fill black \
     -pointsize  48\
+    -font 'DejaVu-Sans' \
     -annotate +1000+695 "$TS_NAME" \
     -annotate +2320+695 "$TS_ID" \
     -annotate +1000+900 "$TS_DEPT" \
