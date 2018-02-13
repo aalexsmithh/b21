@@ -1,10 +1,12 @@
 module B21.Types where
 
 import Data.Aeson
+import Data.Monoid ( (<>) )
 import Data.Text ( Text, pack )
 import Data.Time.Clock ( UTCTime(..) )
 import Data.Time.Format
 import GHC.Generics
+import Web.FormUrlEncoded
 
 newtype DateTime
   = DateTime { dateTime :: UTCTime }
@@ -49,6 +51,30 @@ data CreateTimesheet
       -- Thursday, Friday, Saturday.
     }
   deriving (Eq, Ord, Generic, FromJSON)
+
+instance FromForm CreateTimesheet where
+  fromForm f = CreateTimesheet
+    <$> parseUnique "name" f
+    <*> parseUnique "id" f
+    <*> pure "Office of Student Life and Learning"
+    <*> (datify <$> yearsFrom <*> monthsFrom <*> daysFrom)
+    <*> (datify <$> yearsTo <*> monthsTo <*> daysTo)
+    <*> parseUnique "rate" f
+    <*> hours
+    where
+      daysFrom = parseUnique "days_from" f
+      monthsFrom = parseUnique "months_from" f
+      yearsFrom = parseUnique "years_from" f
+      daysTo = parseUnique "days_to" f
+      monthsTo = parseUnique "months_to" f
+      yearsTo = parseUnique "years_to" f
+
+      days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+      hours = traverse prs days where
+        prs d = parseUnique d f
+
+      datify :: Text -> Text -> Text -> Text
+      datify y m d = y <> "-" <> m <> "-" <> d
 
 data TimesheetInfo
   = TimesheetInfo

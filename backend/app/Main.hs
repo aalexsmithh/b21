@@ -12,6 +12,8 @@ import Control.Exception ( SomeException )
 import Control.Monad ( forM_, when )
 import Control.Monad.IO.Class
 import Data.Text ( Text )
+import qualified Data.Text as T
+import qualified Data.Text.Encoding as T
 import qualified Data.Text.IO as T
 import Network.Wai.Handler.Warp
 import Network.Wai.Middleware.RequestLogger ( logStdoutDev )
@@ -105,9 +107,8 @@ server SiteConfig{..} = addEmail :<|> getEvents :<|> timesheet where
 
   timesheet
     :: CreateTimesheet -- ^ timesheet creation parameters
-    -> Maybe Bool -- ^ whether to send an email with the timesheet attached
-    -> Handler TimesheetInfo
-  timesheet cts mb = do
+    -> Handler ()
+  timesheet cts = do
     -- filename to store the pdf in is randomly chosen
     i <- show <$> liftIO (getStdRandom (randomR (0 :: Int, maxBound)))
     let name = i <.> "pdf"
@@ -119,9 +120,10 @@ server SiteConfig{..} = addEmail :<|> getEvents :<|> timesheet where
 
     liftIO $ copyFile (confPdfOutDir </> name) (confStaticDir </> name)
 
-    pure TimesheetInfo
-      { timesheetUrl = confStaticUrlPrefix </> name
-      }
+    redirect $ T.encodeUtf8 $ T.pack (confStaticUrlPrefix </> name)
 
   addEmail' :: Text -> IO ()
   addEmail' x = locking confFileLock (T.appendFile confEmailFilePath x)
+
+redirect to = throwError err301 { errHeaders = hds } where
+  hds = [("Location", to)]
