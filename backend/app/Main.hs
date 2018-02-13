@@ -35,6 +35,8 @@ data SiteConfig =
     , confFileLock :: Lock
     , confCalendarReq :: Request
     , confHttpManager :: Manager
+    , confTimesheetBase :: FilePath
+    -- ^ the path to the base timesheet
     , confTimesheetScript :: FilePath
     -- ^ the path to the timesheet script
     , confPdfOutDir :: FilePath
@@ -65,6 +67,8 @@ getConfig = do
   pdfDir <- getEnv "B21_PDF_DIR"
   staticDir <- getEnv "B21_STATIC_DIR"
   staticUrl <- getEnv "B21_STATIC_URL_PREFIX"
+  tsbase <- getEnv "B21_TIMESHEET_BASE"
+
   e <- getEnvironment
   pure SiteConfig
     { confEmailFilePath = path
@@ -77,6 +81,7 @@ getConfig = do
     , confEnv = e
     , confStaticDir = staticDir
     , confStaticUrlPrefix = staticUrl
+    , confTimesheetBase = tsbase
     }
 
 main :: IO ()
@@ -112,8 +117,12 @@ server SiteConfig{..} = addEmail :<|> getEvents :<|> timesheet where
     -- filename to store the pdf in is randomly chosen
     i <- show <$> liftIO (getStdRandom (randomR (0 :: Int, maxBound)))
     let name = i <.> "pdf"
-    b <- liftIO $
-      makeTimesheet (confPdfOutDir </> name) confTimesheetScript (Just confEnv) cts
+    b <- liftIO $ makeTimesheet
+      (confPdfOutDir </> name)
+      confTimesheetScript
+      confTimesheetBase
+      (Just confEnv)
+      cts
     -- get out the path to the pdf
     when (not b) $ do
       throwError err500 { errBody = "failed to create timesheet" }

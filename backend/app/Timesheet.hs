@@ -13,15 +13,18 @@ import System.IO ( FilePath )
 makeTimesheet
   :: FilePath -- ^ output file path
   -> FilePath -- ^ script path
+  -> FilePath -- ^ timesheet base path
   -> Maybe [(String, String)] -- ^ existing environment
   -> CreateTimesheet -- ^ timesheet parameters
   -> IO Bool
-makeTimesheet outPath scriptPath env cts = do
+makeTimesheet outPath scriptPath tsbase env cts = do
   (_, _, _, h) <- createProcess $ (proc scriptPath [])
-    { env = (++) <$> env <*> pure (("OUTNAME", outPath) : makeEnv cts) }
+    { env = (++) <$> env <*> pure env' }
   timeout' (waitForProcess h) >>= \case
     Just ExitSuccess -> pure True
     _ -> pure False
+  where
+    env' = ("TS_BASE", tsbase) : ("OUTNAME", outPath) : makeEnv cts
 
 -- | Creates an environment mapping to send all necessary parameters to the
 -- script.

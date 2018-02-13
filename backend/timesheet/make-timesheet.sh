@@ -52,7 +52,7 @@ TS_TOTAL_H=$(
 
 TS_TOTAL_MONEY=$(echo "$TS_RATE * $TS_TOTAL_H" | bc)
 
-convert casual_timesheet.png \
+convert "${TS_BASE}" \
     -fill black \
     -pointsize  48\
     -annotate +1000+695 "$TS_NAME" \
