@@ -27,10 +27,10 @@
 		$output = shell_exec("TS_TOT_SU="$su" TS_TOT_MO="$m" TS_TOT_TU="$t" \
 								TS_TOT_WE="$w" TS_TOT_TH="$r" TS_TOT_FR="$f" \
 								TS_TOT_SA="$sa" TS_RATE="$rate" TS_NAME="$n" \
-								TS_ID="$id" ./make-timsheet.sh");	
+								TS_ID="$id" ./opt/b21-timesheet/make-timesheet.sh");	
 		
 		
-		header( "Location: $output" );
+		header( "Location: "building21.ca".$output" );
 		}
 
 ?>
