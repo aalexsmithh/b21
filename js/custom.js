@@ -13,10 +13,9 @@ $(function () {
                 events: _(res).map(function(event) {
                     // convert the event time from UTC to localtime, and throw
                     // away the time info to just extract the date.
-                    event.date = moment(event.startDate)
-                        .local().format('YYYY-MM-DD');
-                    event.startDate = moment(event.startDate).local();
-                    event.endDate = moment(event.endDate).local();
+                    event.date = moment.utc(event.startDate);
+                    event.startDate = moment.utc(event.startDate);
+                    event.endDate = moment.utc(event.endDate);
                     return event;
                 }),
                 template: $('#calendar-template').html(),

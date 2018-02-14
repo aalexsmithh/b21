@@ -52,17 +52,17 @@
         <li>
             <span class="event-title"><b><%= event.title %></b></</span> <br>
             <span class="event-date">
-                <%= moment(event.date).format('D MMM') %>, <%= moment(event.date).fromNow() %>
+                <%= event.date.local().format('D MMM') %>, <%= event.date.local().fromNow() %>
             </span> <br>
             <% if(event.startDate && event.endDate) { %>
             <span class="event-time">
                 from
                 <span class="start time">
-                    <%= event.startDate.format(niceTimeFormat) %>
+                    <%= event.startDate.local().format(niceTimeFormat) %>
                 </span>
                 to
                 <span class="end time">
-                    <%= event.endDate.format(niceTimeFormat) %>
+                    <%= event.endDate.local().format(niceTimeFormat) %>
                 </span>
             </span> <br>
             <% } %>
