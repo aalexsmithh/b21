@@ -17,6 +17,9 @@ echo '>>> DEPLOYING FRONTEND'
 echo '>>> RESTARTING BACKEND'
 sudo systemctl restart b21-backend
 sudo systemctl status b21-backend
+echo '>>> RESTARTING REDIRECT MANAGER'
+sudo systemctl restart b21-redirect-manager
+sudo systemctl status b21-redirect-manager
 EOF
 
 echo '>>> DEPLOY COMPLETE'
