@@ -19,12 +19,6 @@ html {
     width: 100%;
 }
 
-div#coc {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1em 0;
-}
-
 ul#events-this-month-list {
     list-style-type: none;
     display: flex;
@@ -108,4 +102,21 @@ div.day.event {
 
 div.clndr {
     width: 100%;
+}
+
+div#info-boxes > * {
+    padding: 1em 0;
+}
+
+div#info-boxes h4 {
+    text-align: center;
+}
+
+div#info-boxes > :first-child {
+    border-top: 1px solid black;
+}
+
+
+div#info-boxes > :nth-child(n + 1) {
+    border-bottom: 1px solid black;
 }
