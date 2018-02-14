@@ -9,7 +9,9 @@ set -e
 export B21_DEBUG_PORT=8080
 export B21_API_PORT=8082
 export B21_FRONTEND_PATH="../frontend"
-export B21_CALENDAR_URI="http://localhost:8084/one-event.ics"
+export B21_CALENDAR_URI="https://calendar.google.com/calendar/ical/730gi5f1v146d8h9mrno43kq7c%40group.calendar.google.com/public/basic.ics"
+
+mkdir -p ../frontend/static
 
 (cd .. && ./build-frontend.sh)
 (cd ../backend && source test.env && exec ./debug.sh "$@") &
