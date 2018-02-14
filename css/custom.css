@@ -1,5 +1,5 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
@@ -16,6 +16,40 @@ html {
 
 #events-this-month {
     padding: 1em;
+    width: 100%;
+}
+
+div#coc {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 1em 0;
+}
+
+ul#events-this-month-list {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+/*
+ul#events-this-month-list:after {
+    content: "";
+    flex: auto;
+}
+*/
+
+ul#events-this-month-list > li {
+    padding: 0.5em;
+    width: 42%;
+    margin: 1.5em 0;
+    border-radius: 0.25em;
+    border: 1px solid #aaa;
+    box-shadow: 0 0.1em black;
+}
+
+p.event-summary {
+    margin: 0.5em 0;
 }
 
 #calendar-widget {
@@ -66,4 +100,12 @@ div.day.event {
 
 .b21-red {
     color: #564D4A;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+div.clndr {
+    width: 100%;
 }
