@@ -19,6 +19,7 @@ $(function () {
                     return event;
                 }),
                 template: $('#calendar-template').html(),
+                showAdjacentMonths: false,
             });
         })
         // if it fails then we log the error and say sorry.
