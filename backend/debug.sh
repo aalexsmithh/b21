@@ -2,8 +2,6 @@
 
 echo "starting ical server..."
 
-(cd ../ics ; python3 -m http.server 8084) &
-
 if test -z "$B21_API_POST" ; then
     B21_API_PORT=8082
 fi
