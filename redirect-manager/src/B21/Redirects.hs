@@ -37,7 +37,7 @@ data Redirect
 
 parseRedirects :: FilePath -> T.Text -> Either T.Text Redirects
 parseRedirects p t = left (T.pack . show) $ parse parser p (T.unpack t) where
-  parser = (redirect `sepBy` eol) <* optional eol <*  eof
+  parser = (redirect `sepEndBy` eol) <* eof
   redirect :: Parser Redirect
   redirect = do
     path <- T.concat <$> some pathComponent
@@ -59,7 +59,7 @@ parseRedirects p t = left (T.pack . show) $ parse parser p (T.unpack t) where
   -- @slash (non-slash alphanumeric or symbol)+@.
   pathComponent :: Parser T.Text
   pathComponent = do
-    c <- char '/'
+    c <- try (char '/')
     -- the path component body is any alphanumeric character or punctuation
     -- (like a dash) but *not* a slash!
     let s = "alphanumeric or symbol character (excluding slash)"
