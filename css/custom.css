@@ -35,6 +35,13 @@ ul#events-this-month-list > li {
     box-shadow: 0 0.1em black;
 }
 
+@media (max-width: 750px) {
+    ul#events-this-month-list > li {
+        width: 90%;
+    }
+}
+
+
 p.event-summary {
     margin: 0.5em 0;
 }
