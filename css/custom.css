@@ -36,6 +36,10 @@ ul#events-this-month-list > li {
 }
 
 @media (max-width: 750px) {
+    ul#events-this-month-list {
+        justify-content: space-around;
+    }
+
     ul#events-this-month-list > li {
         width: 90%;
     }
