@@ -26,13 +26,6 @@ ul#events-this-month-list {
     justify-content: space-between;
 }
 
-/*
-ul#events-this-month-list:after {
-    content: "";
-    flex: auto;
-}
-*/
-
 ul#events-this-month-list > li {
     padding: 0.5em;
     width: 42%;
