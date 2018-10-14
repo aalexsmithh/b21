@@ -3,11 +3,11 @@ Description=Building21 Backend
 After=network-online.target
 
 [Service]
-WorkingDirectory=/var/hakyll
-User=hakyll
-Group=hakyll
-ExecStart=/var/hakyll/.local/bin/b21-backend-exe
-EnvironmentFile=/var/hakyll/b21-backend.production.env
+WorkingDirectory=/home/tsani
+User=tsani
+Group=nogroup
+ExecStart=/home/tsani/.local/bin/b21-backend-exe
+EnvironmentFile=/home/tsani/b21-backend.production.env
 
 [Install]
 WantedBy=multi-user.target
