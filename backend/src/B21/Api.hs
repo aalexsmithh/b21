@@ -11,9 +11,7 @@ import Servant.API
 import B21.Types
 
 type B21Api
-  = "add_email" :> ReqBody '[JSON] AddEmail :> Post '[JSON] Text
-  :<|> "get_calendar" :> Get '[JSON] [Event]
-  :<|> "timesheet"
+  = "timesheet"
     :> ReqBody '[FormUrlEncoded] CreateTimesheet
     :> Post '[JSON] ()
 

@@ -30,10 +30,7 @@ type Lock = MVar ()
 
 data SiteConfig =
   SiteConfig
-    { confEmailFilePath :: FilePath
-    , confServerPort :: Int
-    , confFileLock :: Lock
-    , confCalendarReq :: Request
+    { confServerPort :: Int
     , confHttpManager :: Manager
     , confTimesheetBase :: FilePath
     -- ^ the path to the base timesheet
@@ -58,9 +55,6 @@ locking l m = withMVar l (const m)
 
 getConfig :: IO SiteConfig
 getConfig = do
-  port <- read <$> getEnv "B21_API_PORT"
-  path <- getEnv "B21_EMAIL_FILEPATH"
-  calReq <- parseRequest_ <$> getEnv "B21_CALENDAR_URI"
   lock <- newMVar ()
   man <- newManager tlsManagerSettings
   ts <- getEnv "B21_TIMESHEET_SCRIPT"
@@ -71,11 +65,7 @@ getConfig = do
 
   e <- getEnvironment
   pure SiteConfig
-    { confEmailFilePath = path
-    , confServerPort = port
-    , confFileLock = lock
-    , confCalendarReq = calReq
-    , confHttpManager = man
+    { confHttpManager = man
     , confTimesheetScript = ts
     , confPdfOutDir = pdfDir
     , confEnv = e
@@ -93,23 +83,7 @@ catchAll :: IO a -> IO (Either SomeException a)
 catchAll m = async m >>= waitCatch
 
 server :: SiteConfig -> Server B21Api
-server SiteConfig{..} = addEmail :<|> getEvents :<|> timesheet where
-  addEmail :: AddEmail -> Handler Text
-  addEmail AddEmail{..} = do
-    liftIO (catchAll $ addEmail' addEmailAddress) >>= \case
-      Left _ -> throwError err500 { errBody = "something happened" }
-      Right _ -> pure "ok"
-
-  getEvents :: Handler [Event]
-  getEvents = liftIO $ do
-    let r (ers, evs) (ers', evs') = (ers ++ ers', evs ++ evs')
-    (ers, evs) <- foldr r ([], []) . fmap events . fst
-      <$> getRemoteCalendar confCalendarReq confHttpManager
-
-    forM_ ers $ \e -> putStrLn $ "error interpreting event: " ++ e
-
-    pure evs
-
+server SiteConfig{..} = timesheet where
   timesheet
     :: CreateTimesheet -- ^ timesheet creation parameters
     -> Handler ()
@@ -131,9 +105,6 @@ server SiteConfig{..} = addEmail :<|> getEvents :<|> timesheet where
     liftIO $ copyFile (confPdfOutDir </> name) (confStaticDir </> name)
 
     redirect $ T.encodeUtf8 $ T.pack (confStaticUrlPrefix </> name)
-
-  addEmail' :: Text -> IO ()
-  addEmail' x = locking confFileLock (T.appendFile confEmailFilePath x)
 
 redirect to = throwError err301 { errHeaders = hds } where
   hds = [("Location", to)]
