@@ -2,9 +2,11 @@
 
 set -e
 
-ssh -T hakyll@internal.building21.ca <<EOF
+source .remote-deploy.env
+
+ssh -T -p $REMOTE_DEPLOY_PORT $REMOTE_DEPLOY_USER@$REMOTE_DEPLOY_HOST <<EOF
 set -e
-cd b21
+cd website
 echo '>>> UPDATING SOURCES'
 git fetch
 git reset --hard origin/master
@@ -17,9 +19,9 @@ echo '>>> DEPLOYING FRONTEND'
 echo '>>> RESTARTING BACKEND'
 sudo systemctl restart b21-backend
 sudo systemctl status b21-backend
-echo '>>> RESTARTING REDIRECT MANAGER'
-sudo systemctl restart b21-redirect-manager
-sudo systemctl status b21-redirect-manager
+# echo '>>> RESTARTING REDIRECT MANAGER'
+# sudo systemctl restart b21-redirect-manager
+# sudo systemctl status b21-redirect-manager
 EOF
 
 echo '>>> DEPLOY COMPLETE'
