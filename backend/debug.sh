@@ -17,6 +17,8 @@ if test -z "$B21_CALENDAR_URI" ; then
 fi
 export B21_CALENDAR_URI
 
+mkdir -p pdf
+
 echo "starting b21 webservice on port $B21_API_PORT"
 
 exec stack exec b21-backend-exe

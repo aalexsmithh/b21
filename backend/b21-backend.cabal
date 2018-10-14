@@ -17,12 +17,14 @@ library
   hs-source-dirs:      src
   exposed-modules:
     B21.Api,
-    B21.Types
+    B21.Types,
+    B21.Timesheet
   build-depends:
     aeson,
     base >= 4.7 && < 5,
     servant,
     servant-server,
+    process,
     text,
     time,
     http-api-data
@@ -32,6 +34,7 @@ library
     DeriveAnyClass,
     DeriveFunctor,
     DeriveGeneric,
+    LambdaCase,
     GADTs,
     OverloadedStrings,
     RecordWildCards,
@@ -43,7 +46,6 @@ executable b21-backend-exe
   main-is:             Main.hs
   other-modules:
     Calendar
-    Timesheet
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:
     async,

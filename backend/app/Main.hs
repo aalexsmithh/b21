@@ -1,10 +1,10 @@
 module Main where
 
 import B21.Api
+import B21.Timesheet ( makeTimesheet )
 import B21.Types
 
 import Calendar
-import Timesheet ( makeTimesheet )
 
 import Control.Concurrent.Async ( async, waitCatch )
 import Control.Concurrent.MVar
@@ -115,6 +115,7 @@ server SiteConfig{..} = addEmail :<|> getEvents :<|> timesheet where
     -> Handler ()
   timesheet cts = do
     -- filename to store the pdf in is randomly chosen
+    liftIO $ putStrLn "making timesheet"
     i <- show <$> liftIO (getStdRandom (randomR (0 :: Int, maxBound)))
     let name = i <.> "pdf"
     b <- liftIO $ makeTimesheet

@@ -10,38 +10,38 @@
 
 TS_SIG="$TS_NAME                    $(date "+%d %b %Y")"
 
-TS_IN_SU=""
-TS_OUT_SU=""
+# TS_IN_SU=""
+# TS_OUT_SU=""
 TS_OFF_SU=""
 #TS_TOT_SU=1
 
-TS_IN_MO=""
-TS_OUT_MO=""
+# TS_IN_MO=""
+# TS_OUT_MO=""
 TS_OFF_MO=""
 #TS_TOT_MO=2
 
-TS_IN_TU=""
-TS_OUT_TU=""
+# TS_IN_TU=""
+# TS_OUT_TU=""
 TS_OFF_TU=""
 #TS_TOT_TU=3
 
-TS_IN_WE=""
-TS_OUT_WE=""
+# TS_IN_WE=""
+# TS_OUT_WE=""
 TS_OFF_WE=""
 #TS_TOT_WE=4
 
-TS_IN_TH=""
-TS_OUT_TH=""
+# TS_IN_TH=""
+# TS_OUT_TH=""
 TS_OFF_TH=""
 #TS_TOT_TH=5
 
-TS_IN_FR=""
-TS_OUT_FR=""
+# TS_IN_FR=""
+# TS_OUT_FR=""
 TS_OFF_FR=""
 #TS_TOT_FR=6
 
-TS_IN_SA=""
-TS_OUT_SA=""
+# TS_IN_SA=""
+# TS_OUT_SA=""
 TS_OFF_SA=""
 #TS_TOT_SA=7
 

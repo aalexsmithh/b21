@@ -17,29 +17,29 @@
 		<option value="2019">2019</option>
 	</select>-
 	<select name="months_from">
-		<option value="Jan">Jan</option>
-		<option value="Feb">Feb</option>
-		<option value="Mar">Mar</option>
-		<option value="Apr">Apr</option>
-		<option value="May">May</option>
-		<option value="Jun">Jun</option>
-		<option value="Jul">Jul</option>
-		<option value="Aug">Aug</option>
-		<option value="Sep">Sep</option>
-		<option value="Oct">Oct</option>
-		<option value="Nov">Nov</option>
-		<option value="Dec">Dec</option>
+		<option value="01">Jan</option>
+		<option value="02">Feb</option>
+		<option value="03">Mar</option>
+		<option value="04">Apr</option>
+		<option value="05">May</option>
+		<option value="06">Jun</option>
+		<option value="07">Jul</option>
+		<option value="08">Aug</option>
+		<option value="09">Sep</option>
+		<option value="10">Oct</option>
+		<option value="11">Nov</option>
+		<option value="12">Dec</option>
 	</select>-
 	<select name="days_from">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
+		<option value="01">1</option>
+		<option value="02">2</option>
+		<option value="03">3</option>
+		<option value="04">4</option>
+		<option value="05">5</option>
+		<option value="06">6</option>
+		<option value="07">7</option>
+		<option value="08">8</option>
+		<option value="09">9</option>
 		<option value="10">10</option>
 		<option value="11">11</option>
 		<option value="12">12</option>
@@ -69,29 +69,29 @@
 		<option value="2019">2019</option>
 	</select>-
 	<select name="months_to">
-		<option value="Jan">Jan</option>
-		<option value="Feb">Feb</option>
-		<option value="Mar">Mar</option>
-		<option value="Apr">Apr</option>
-		<option value="May">May</option>
-		<option value="Jun">Jun</option>
-		<option value="Jul">Jul</option>
-		<option value="Aug">Aug</option>
-		<option value="Sep">Sep</option>
-		<option value="Oct">Oct</option>
-		<option value="Nov">Nov</option>
-		<option value="Dec">Dec</option>
+		<option value="01">Jan</option>
+		<option value="02">Feb</option>
+		<option value="03">Mar</option>
+		<option value="04">Apr</option>
+		<option value="05">May</option>
+		<option value="06">Jun</option>
+		<option value="07">Jul</option>
+		<option value="08">Aug</option>
+		<option value="09">Sep</option>
+		<option value="10">Oct</option>
+		<option value="11">Nov</option>
+		<option value="12">Dec</option>
 	</select>-
 	<select name="days_to">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
+		<option value="01">1</option>
+		<option value="02">2</option>
+		<option value="03">3</option>
+		<option value="04">4</option>
+		<option value="05">5</option>
+		<option value="06">6</option>
+		<option value="07">7</option>
+		<option value="08">8</option>
+		<option value="09">9</option>
 		<option value="10">10</option>
 		<option value="11">11</option>
 		<option value="12">12</option>
@@ -118,63 +118,59 @@
 	
 	<table align="center">
 		<tr>
-			<th><h3>Day of the Week</h3></th>
-			<th><h3>Total Hours</h3> </th>
+			<th>Day of the Week</th>
+			<th>Time in</th>
+			<th>Time out</th>
 		</tr>
 		<tr>
-			<th>Sunday</th>
-			<th><input type="number" step="0.01" name="sunday"></th>
+			<td>Sunday</td>
+			<td><input type="time" name="sunday_in"></td>
+			<td><input type="time" name="sunday_out"></td>
 		</tr>
 		<tr>
-			<th>Monday</th>
-			<th><input type="number" step="0.01" name="monday"></th>
+			<td>Monday</td>
+			<td><input type="time" name="monday_in"></td>
+			<td><input type="time" name="monday_out"></td>
 		</tr>
 		<tr>
-			<th>Tuesday</th>
-			<th><input type="number" step="0.01" name="tuesday"></th>
+			<td>Tuesday</td>
+			<td><input type="time" name="tuesday_in"></td>
+			<td><input type="time" name="tuesday_out"></td>
 		</tr>
 		<tr>
-			<th>Wednesday</th>
-			<th><input type="number" step="0.01" name="wednesday"></th>
+			<td>Wednesday</td>
+			<td><input type="time" name="wednesday_in"></td>
+			<td><input type="time" name="wednesday_out"></td>
 		</tr>
 		<tr>
-			<th>Thursday</th>
-			<th><input type="number" step="0.01" name="thursday"></th>
+			<td>Thursday</td>
+			<td><input type="time" name="thursday_in"></td>
+			<td><input type="time" name="thursday_out"></td>
 		</tr>
 		<tr>
-			<th>Friday</th>
-			<th><input type="number" step="0.01" name="friday"></th>
+			<td>Friday</td>
+			<td><input type="time" name="friday_in"></td>
+			<td><input type="time" name="friday_out"></td>
 		</tr>
 		<tr>
-			<th>Saturday</th>
-			<th><input type="number" step="0.01" name="saturday"></th>
-		</tr>
-		<tr>
-			<th>===========</th>
-			<th>========================</th>
-		</tr>
-		<tr>
-			<th>Total Hours</th>
-			<th><i>calculated automatically</i></th>
-		</tr>
-		<tr>
-			<th>Hourly Rate</th>
-			<th><input type="number" name="rate"></th>
+			<td>Saturday</td>
+			<td><input type="time" name="saturday_in"></td>
+			<td><input type="time" name="saturday_out"></td>
 		</tr>
 	</table>
+
+	<div>
+		<label for="hourly-rate-input">Hourly Rate</label>
+		<input id="hourly-rate-input" type="number" name="rate">
+	</div>
+
+  <div>
+    <label for="department-input">Department</label>
+    <input id="department-input" type="text" name="department">
+  </div>
 	
 	<br><br>
-<!--
-	<h2>Advanced Stuff</h2>
-	
-	<p>Would you like to send this to Seyissa automatically? Please check the following box and enter a reply-to email</p>
-	Send? <input type="checkbox" name="send_to_seyissa"> 
-	<br>
-	reply-to:<input type="email" name="reply_email">
-	
-	
-	<br><br>
--->
+
 	<input type="submit" name="submit">
 	
 </form>
