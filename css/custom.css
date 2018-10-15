@@ -6,6 +6,75 @@ html {
     min-height: 100%;
 }
 
+h1 {
+    font-size: 4.2rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h1,h2,h3 {
+    margin: 1em inherit;
+}
+
+#timesheet-generator {
+    max-width: 8in;
+    margin: 0 auto;
+}
+
+#timesheet-generator .submit {
+    text-align: center;
+}
+
+#timesheet-generator table {
+    width: 95%;
+}
+
+#week-selector {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+table tr {
+    padding: 0.25em 0;
+}
+
+table th,td {
+    padding: 0 0.25em;
+}
+
+#daily-time-input {
+    margin: 1em auto;
+}
+
+.form-section {
+    margin: 1em 0.5em;
+}
+
+.flex-subsection {
+    display: flex;
+}
+
+.flex-subsection > .col {
+    flex: 1;
+}
+
+.flex-subsection > .col > * {
+    margin: 1em 0.5em;
+}
+
+#week-selector > * {
+    margin: 0 2em;
+}
+
 #calendar-widget-container {
     display: flex;
     flex-flow: row;

@@ -1,178 +1,231 @@
 <!DOCTYPE html>
 <html>
-<body style="text-align: center;">
+  <head>
+    <title> Timesheet Generator by B21 </title>
+    <link rel="stylesheet" href="/css/dependencies.css">
+  </head>
+  
+  <body>
+    <div id="timesheet-generator">
+      
+      <h1>Timesheet Generator</h1>
+      
+      <form action="/api/timesheet" method="post">
+        <div class="form-section">
+          <h2> Personal data </h2>
 
-<h1>Timesheet Generator</h1>
+          <div class="flex-subsection">
+            <div class="col">
+              <div class="form-field">
+                <label for="name-input">Name</label>
+                <input id="name-input" type="text" placeholder="Jane Doe" name="name">
+              </div>
+              
+              <div class="form-field">
+                <label for="mcgill-id-input">McGill ID</label>
+                <input id="mcgill-id-input" type="text" placeholder="260xxxxxx" name="id">
+              </div>
+            </div>
 
-<p>Please make sure all fields are filled before hitting submit! Use 0 instead of blanks for days you didn't work!</p>
+            <div class="col">
+              <div class="form-field">
+                <label for="hourly-rate-input">Hourly Rate</label>
+                <input id="hourly-rate-input" type="number" name="rate">
+              </div>
+              
+              <div class="form-field">
+                <label for="department-input">Department</label>
+                <input id="department-input" type="text" name="department">
+              </div>
+            </div>
+          </div>
+        </div>
 
-<form action="/api/timesheet" method="post">
-	<input type="text" placeholder="Name" name="name">
-	<input type="text" placeholder="McGill ID" name="id">
-	
-	<h2>Workweek</h2>
-	Sunday 
-	<select name="years_from">
-		<option value="2018">2018</option>
-		<option value="2019">2019</option>
-	</select>-
-	<select name="months_from">
-		<option value="01">Jan</option>
-		<option value="02">Feb</option>
-		<option value="03">Mar</option>
-		<option value="04">Apr</option>
-		<option value="05">May</option>
-		<option value="06">Jun</option>
-		<option value="07">Jul</option>
-		<option value="08">Aug</option>
-		<option value="09">Sep</option>
-		<option value="10">Oct</option>
-		<option value="11">Nov</option>
-		<option value="12">Dec</option>
-	</select>-
-	<select name="days_from">
-		<option value="01">1</option>
-		<option value="02">2</option>
-		<option value="03">3</option>
-		<option value="04">4</option>
-		<option value="05">5</option>
-		<option value="06">6</option>
-		<option value="07">7</option>
-		<option value="08">8</option>
-		<option value="09">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-		<option value="15">15</option>
-		<option value="16">16</option>
-		<option value="17">17</option>
-		<option value="18">18</option>
-		<option value="19">19</option>
-		<option value="20">20</option>
-		<option value="21">21</option>
-		<option value="22">22</option>
-		<option value="23">23</option>
-		<option value="24">24</option>
-		<option value="25">25</option>
-		<option value="26">26</option>
-		<option value="27">27</option>
-		<option value="28">28</option>
-		<option value="29">29</option>
-		<option value="30">30</option>
-		<option value="31">31</option>
-	</select>
-	to Saturday 
-	<select name="years_to">
-		<option value="2018">2018</option>
-		<option value="2019">2019</option>
-	</select>-
-	<select name="months_to">
-		<option value="01">Jan</option>
-		<option value="02">Feb</option>
-		<option value="03">Mar</option>
-		<option value="04">Apr</option>
-		<option value="05">May</option>
-		<option value="06">Jun</option>
-		<option value="07">Jul</option>
-		<option value="08">Aug</option>
-		<option value="09">Sep</option>
-		<option value="10">Oct</option>
-		<option value="11">Nov</option>
-		<option value="12">Dec</option>
-	</select>-
-	<select name="days_to">
-		<option value="01">1</option>
-		<option value="02">2</option>
-		<option value="03">3</option>
-		<option value="04">4</option>
-		<option value="05">5</option>
-		<option value="06">6</option>
-		<option value="07">7</option>
-		<option value="08">8</option>
-		<option value="09">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-		<option value="15">15</option>
-		<option value="16">16</option>
-		<option value="17">17</option>
-		<option value="18">18</option>
-		<option value="19">19</option>
-		<option value="20">20</option>
-		<option value="21">21</option>
-		<option value="22">22</option>
-		<option value="23">23</option>
-		<option value="24">24</option>
-		<option value="25">25</option>
-		<option value="26">26</option>
-		<option value="27">27</option>
-		<option value="28">28</option>
-		<option value="29">29</option>
-		<option value="30">30</option>
-		<option value="31">31</option>
-	</select>
-	
-	<table align="center">
-		<tr>
-			<th>Day of the Week</th>
-			<th>Time in</th>
-			<th>Time out</th>
-		</tr>
-		<tr>
-			<td>Sunday</td>
-			<td><input type="time" name="sunday_in"></td>
-			<td><input type="time" name="sunday_out"></td>
-		</tr>
-		<tr>
-			<td>Monday</td>
-			<td><input type="time" name="monday_in"></td>
-			<td><input type="time" name="monday_out"></td>
-		</tr>
-		<tr>
-			<td>Tuesday</td>
-			<td><input type="time" name="tuesday_in"></td>
-			<td><input type="time" name="tuesday_out"></td>
-		</tr>
-		<tr>
-			<td>Wednesday</td>
-			<td><input type="time" name="wednesday_in"></td>
-			<td><input type="time" name="wednesday_out"></td>
-		</tr>
-		<tr>
-			<td>Thursday</td>
-			<td><input type="time" name="thursday_in"></td>
-			<td><input type="time" name="thursday_out"></td>
-		</tr>
-		<tr>
-			<td>Friday</td>
-			<td><input type="time" name="friday_in"></td>
-			<td><input type="time" name="friday_out"></td>
-		</tr>
-		<tr>
-			<td>Saturday</td>
-			<td><input type="time" name="saturday_in"></td>
-			<td><input type="time" name="saturday_out"></td>
-		</tr>
-	</table>
+        <div class="form-section">
+          <h2>Workweek</h2>
+          <div id="week-selector">
+            <div class="form-field">
+              <label for="sunday-input">
+                Sunday 
+              </label>
 
-	<div>
-		<label for="hourly-rate-input">Hourly Rate</label>
-		<input id="hourly-rate-input" type="number" name="rate">
-	</div>
+              <div id="sunday-input">
+                <select name="years_from">
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                </select>-
+                <select name="months_from">
+                  <option value="01">Jan</option>
+                  <option value="02">Feb</option>
+                  <option value="03">Mar</option>
+                  <option value="04">Apr</option>
+                  <option value="05">May</option>
+                  <option value="06">Jun</option>
+                  <option value="07">Jul</option>
+                  <option value="08">Aug</option>
+                  <option value="09">Sep</option>
+                  <option value="10">Oct</option>
+                  <option value="11">Nov</option>
+                  <option value="12">Dec</option>
+                </select>-
+                <select name="days_from">
+                  <option value="01">1</option>
+                  <option value="02">2</option>
+                  <option value="03">3</option>
+                  <option value="04">4</option>
+                  <option value="05">5</option>
+                  <option value="06">6</option>
+                  <option value="07">7</option>
+                  <option value="08">8</option>
+                  <option value="09">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+              </div>
+            </div>
 
-  <div>
-    <label for="department-input">Department</label>
-    <input id="department-input" type="text" name="department">
-  </div>
-	
-	<br><br>
+            <span>to</span>
 
-	<input type="submit" name="submit">
-	
-</form>
-</body>
+            <div class="form-field">
+              <label for="saturday-input">
+                Saturday 
+              </label>
+              <div id="saturday-input">
+                <select name="years_to">
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                </select>-
+                <select name="months_to">
+                  <option value="01">Jan</option>
+                  <option value="02">Feb</option>
+                  <option value="03">Mar</option>
+                  <option value="04">Apr</option>
+                  <option value="05">May</option>
+                  <option value="06">Jun</option>
+                  <option value="07">Jul</option>
+                  <option value="08">Aug</option>
+                  <option value="09">Sep</option>
+                  <option value="10">Oct</option>
+                  <option value="11">Nov</option>
+                  <option value="12">Dec</option>
+                </select>-
+                <select name="days_to">
+                  <option value="01">1</option>
+                  <option value="02">2</option>
+                  <option value="03">3</option>
+                  <option value="04">4</option>
+                  <option value="05">5</option>
+                  <option value="06">6</option>
+                  <option value="07">7</option>
+                  <option value="08">8</option>
+                  <option value="09">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-info">
+            <p>
+              Input the time you started and ended work. Unless your browser
+              offers a specialized input method (e.g. Firefox has subfields for
+              hours, minutes, and AM/PM), please input times in the form "HH:MM"
+              with hours in 24-hour form.
+            </p>
+            <p>
+              If you didn't work on a particular day, simply leave it blank.
+            </p>
+          </div>
+
+          <table id="daily-time-input">
+            <tr>
+              <th>Day of the Week</th>
+              <th>Time in</th>
+              <th>Time out</th>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td><input type="time" placeholder="00:00" name="sunday_in"></td>
+              <td><input type="time" placeholder="00:00" name="sunday_out"></td>
+            </tr>
+            <tr>
+              <td>Monday</td>
+              <td><input type="time" placeholder="00:00" name="monday_in"></td>
+              <td><input type="time" placeholder="00:00" name="monday_out"></td>
+            </tr>
+            <tr>
+              <td>Tuesday</td>
+              <td><input type="time" placeholder="00:00" name="tuesday_in"></td>
+              <td><input type="time" placeholder="00:00" name="tuesday_out"></td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td><input type="time" placeholder="00:00" name="wednesday_in"></td>
+              <td><input type="time" placeholder="00:00" name="wednesday_out"></td>
+            </tr>
+            <tr>
+              <td>Thursday</td>
+              <td><input type="time" placeholder="00:00" name="thursday_in"></td>
+              <td><input type="time" placeholder="00:00" name="thursday_out"></td>
+            </tr>
+            <tr>
+              <td>Friday</td>
+              <td><input type="time" placeholder="00:00" name="friday_in"></td>
+              <td><input type="time" placeholder="00:00" name="friday_out"></td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td><input type="time" placeholder="00:00" name="saturday_in"></td>
+              <td><input type="time" placeholder="00:00" name="saturday_out"></td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="submit">
+	        <input type="submit" name="submit" value="generate">
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
