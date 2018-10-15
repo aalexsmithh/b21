@@ -57,6 +57,7 @@ getConfig :: IO SiteConfig
 getConfig = do
   lock <- newMVar ()
   man <- newManager tlsManagerSettings
+  port <- read <$> getEnv "B21_API_PORT"
   ts <- getEnv "B21_TIMESHEET_SCRIPT"
   pdfDir <- getEnv "B21_PDF_DIR"
   staticDir <- getEnv "B21_STATIC_DIR"
@@ -65,7 +66,8 @@ getConfig = do
 
   e <- getEnvironment
   pure SiteConfig
-    { confHttpManager = man
+    { confServerPort = port
+    , confHttpManager = man
     , confTimesheetScript = ts
     , confPdfOutDir = pdfDir
     , confEnv = e
