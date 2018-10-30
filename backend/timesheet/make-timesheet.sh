@@ -61,35 +61,40 @@ convert "${TS_BASE}" \
     -annotate +1000+900 "$TS_DEPT" \
     -annotate +1250+1125 "$TS_SUNDAY" \
     -annotate +2250+1125 "$TS_SATURDAY" \
-    -annotate +450+2685 "$TS_SIG" \
+    -annotate +450+2635 "$TS_SIG" \
+    \
     -annotate +1300+1570 "$TS_IN_SU" \
-    -annotate +1545+1570 "$TS_OUT_SU" \
-    -annotate +1795+1570 "$TS_OFF_SU" \
-    -annotate +2075+1570 "$TS_TOT_SU" \
     -annotate +1300+1695 "$TS_IN_MO" \
-    -annotate +1545+1695 "$TS_OUT_MO" \
-    -annotate +1795+1695 "$TS_OFF_MO" \
-    -annotate +2075+1695 "$TS_TOT_MO" \
     -annotate +1300+1820 "$TS_IN_TU" \
-    -annotate +1545+1820 "$TS_OUT_TU" \
-    -annotate +1795+1820 "$TS_OFF_TU" \
-    -annotate +2075+1820 "$TS_TOT_TU" \
     -annotate +1300+1935 "$TS_IN_WE" \
-    -annotate +1545+1935 "$TS_OUT_WE" \
-    -annotate +1795+1935 "$TS_OFF_WE" \
-    -annotate +2075+1935 "$TS_TOT_WE" \
     -annotate +1300+2060 "$TS_IN_TH" \
-    -annotate +1545+2060 "$TS_OUT_TH" \
-    -annotate +1795+2060 "$TS_OFF_TH" \
-    -annotate +2075+2060 "$TS_TOT_TH" \
     -annotate +1300+2185 "$TS_IN_FR" \
-    -annotate +1545+2185 "$TS_OUT_FR" \
-    -annotate +1795+2185 "$TS_OFF_FR" \
-    -annotate +2075+2185 "$TS_TOT_FR" \
     -annotate +1300+2300 "$TS_IN_SA" \
+    \
+    -annotate +1545+1570 "$TS_OUT_SU" \
+    -annotate +1545+1695 "$TS_OUT_MO" \
+    -annotate +1545+1820 "$TS_OUT_TU" \
+    -annotate +1545+1935 "$TS_OUT_WE" \
+    -annotate +1545+2060 "$TS_OUT_TH" \
+    -annotate +1545+2185 "$TS_OUT_FR" \
     -annotate +1545+2300 "$TS_OUT_SA" \
+    \
+    -annotate +1795+1570 "$TS_OFF_SU" \
+    -annotate +1795+1695 "$TS_OFF_MO" \
+    -annotate +1795+1820 "$TS_OFF_TU" \
+    -annotate +1795+1935 "$TS_OFF_WE" \
+    -annotate +1795+2060 "$TS_OFF_TH" \
+    -annotate +1795+2185 "$TS_OFF_FR" \
     -annotate +1795+2300 "$TS_OFF_SA" \
+    \
+    -annotate +2075+1570 "$TS_TOT_SU" \
+    -annotate +2075+1695 "$TS_TOT_MO" \
+    -annotate +2075+1820 "$TS_TOT_TU" \
+    -annotate +2075+1935 "$TS_TOT_WE" \
+    -annotate +2075+2060 "$TS_TOT_TH" \
+    -annotate +2075+2185 "$TS_TOT_FR" \
     -annotate +2075+2300 "$TS_TOT_SA" \
+    \
     -annotate +2075+2440 "$TS_TOTAL_H h" \
     -annotate +2075+2560 "${TS_RATE} \$/h" \
     -annotate +2075+2670 "\$ $TS_TOTAL_MONEY" \
