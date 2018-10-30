@@ -71,13 +71,13 @@ convert "${TS_BASE}" \
     -annotate +1300+2185 "$TS_IN_FR" \
     -annotate +1300+2300 "$TS_IN_SA" \
     \
-    -annotate +1545+1570 "$TS_OUT_SU" \
-    -annotate +1545+1695 "$TS_OUT_MO" \
-    -annotate +1545+1820 "$TS_OUT_TU" \
-    -annotate +1545+1935 "$TS_OUT_WE" \
-    -annotate +1545+2060 "$TS_OUT_TH" \
-    -annotate +1545+2185 "$TS_OUT_FR" \
-    -annotate +1545+2300 "$TS_OUT_SA" \
+    -annotate +1805+1570 "$TS_OUT_SU" \
+    -annotate +1805+1695 "$TS_OUT_MO" \
+    -annotate +1805+1820 "$TS_OUT_TU" \
+    -annotate +1805+1935 "$TS_OUT_WE" \
+    -annotate +1805+2060 "$TS_OUT_TH" \
+    -annotate +1805+2185 "$TS_OUT_FR" \
+    -annotate +1805+2300 "$TS_OUT_SA" \
     \
     -annotate +1795+1570 "$TS_OFF_SU" \
     -annotate +1795+1695 "$TS_OFF_MO" \
