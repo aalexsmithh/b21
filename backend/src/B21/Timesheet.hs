@@ -66,5 +66,5 @@ makeEnv CreateTimesheet{..} =
     w = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
 
 -- | Timeout duration, in microseconds.
-timeoutSec = 20 * 1000000
+timeoutSec = 50 * 1000000
 timeout' = timeout timeoutSec
