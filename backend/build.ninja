@@ -1,0 +1,23 @@
+src_dir = ./src
+bld_dir = .
+third_party_dir = ./third_party
+
+cc = g++
+
+cflags = -g -Wall -W -Wundef -Wcast-qual -Wpointer-arith -Wconversion -Wredundant-decls -Wwrite-strings -Wcast-align -Wsign-compare -std=c++17 -D__BACKEND_DEBUG__
+
+ldflags = #
+
+rule compile
+    command = $cc $cflags -c $in -o $out
+rule link
+    command = $cc $in -o $out $ldflags
+
+build $bld_dir/logger.o: compile $src_dir/logger.cc
+build $bld_dir/common.o: compile $src_dir/common.cc
+build $bld_dir/backend.o: compile $src_dir/backend.cc
+build $bld_dir/main.o: compile $src_dir/main.cc
+
+build $bld_dir/timesheet_builder: link $bld_dir/logger.o $bld_dir/common.o $bld_dir/backend.o $bld_dir/main.o
+
+default $bld_dir/timesheet_builder
