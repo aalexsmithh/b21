@@ -4,4 +4,4 @@ all:
 
 clean:
 	@ninja -t clean 
-	@rm -f *.txt
+	@rm -f *.txt .ninja_deps .ninja_log
