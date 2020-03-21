@@ -56,7 +56,6 @@ executable b21-backend-exe
     warp,
     servant-server,
     text,
-    iCalendar,
     http-client,
     http-client-tls,
     data-default-class,

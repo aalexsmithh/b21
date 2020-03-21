@@ -4,8 +4,6 @@ import B21.Api
 import B21.Timesheet ( makeTimesheet )
 import B21.Types
 
-import Calendar
-
 import Control.Concurrent.Async ( async, waitCatch )
 import Control.Concurrent.MVar
 import Control.Exception ( SomeException )
