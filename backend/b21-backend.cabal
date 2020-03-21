@@ -44,8 +44,6 @@ library
 executable b21-backend-exe
   hs-source-dirs:      app
   main-is:             Main.hs
-  other-modules:
-    Calendar
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:
     async,
