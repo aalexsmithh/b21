@@ -12,7 +12,7 @@
 
 set -e
 
-mkdir -p frontend/{js,css}
+mkdir -p frontend/js
 
 prefix=node_modules
 
@@ -25,12 +25,3 @@ underscore
 clndr
 EOF
 xargs -I {} cat {} js/custom.js > frontend/js/dependencies.js
-
-# we do this crazy xargs stuff (instead of `cat css/*`) to make sure we get the
-# correct order of files, since declaration order sometimes disambiguates rule
-# precedence in CSS.
-xargs cat > frontend/css/dependencies.css <<'EOF'
-css/skeleton.css
-css/normalize.css
-css/custom.css
-EOF
