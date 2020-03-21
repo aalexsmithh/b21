@@ -1,9 +1,7 @@
 resolver: lts-10.3
 packages:
     - backend
-    - iCalendar
     - debug
-    - redirect-manager
 extra-deps:
     - mime-0.4.0.2
 flags: {}
